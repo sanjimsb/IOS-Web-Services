@@ -13,6 +13,9 @@
 		7C1210E12854F87A00BD55FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C1210DF2854F87A00BD55FB /* Main.storyboard */; };
 		7C1210E32854F87C00BD55FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C1210E22854F87C00BD55FB /* Assets.xcassets */; };
 		7C1210E62854F87C00BD55FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C1210E42854F87C00BD55FB /* LaunchScreen.storyboard */; };
+		7C1210F02855109200BD55FB /* Get_Breeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1210EF2855109200BD55FB /* Get_Breeds.swift */; };
+		7C1210F228553AD400BD55FB /* BreedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C1210F128553AD400BD55FB /* BreedCell.xib */; };
+		7C1210F428553CBE00BD55FB /* BreedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1210F328553CBE00BD55FB /* BreedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		7C1210E22854F87C00BD55FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C1210E52854F87C00BD55FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C1210E72854F87C00BD55FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C1210EF2855109200BD55FB /* Get_Breeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Get_Breeds.swift; sourceTree = "<group>"; };
+		7C1210F128553AD400BD55FB /* BreedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BreedCell.xib; sourceTree = "<group>"; };
+		7C1210F328553CBE00BD55FB /* BreedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,9 @@
 				7C1210E22854F87C00BD55FB /* Assets.xcassets */,
 				7C1210E42854F87C00BD55FB /* LaunchScreen.storyboard */,
 				7C1210E72854F87C00BD55FB /* Info.plist */,
+				7C1210EF2855109200BD55FB /* Get_Breeds.swift */,
+				7C1210F128553AD400BD55FB /* BreedCell.xib */,
+				7C1210F328553CBE00BD55FB /* BreedCell.swift */,
 			);
 			path = "Dog Breed";
 			sourceTree = "<group>";
@@ -125,6 +134,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C1210F228553AD400BD55FB /* BreedCell.xib in Resources */,
 				7C1210E62854F87C00BD55FB /* LaunchScreen.storyboard in Resources */,
 				7C1210E32854F87C00BD55FB /* Assets.xcassets in Resources */,
 				7C1210E12854F87A00BD55FB /* Main.storyboard in Resources */,
@@ -141,6 +151,8 @@
 				7C1210DE2854F87A00BD55FB /* ViewController.swift in Sources */,
 				7C1210DA2854F87A00BD55FB /* AppDelegate.swift in Sources */,
 				7C1210DC2854F87A00BD55FB /* SceneDelegate.swift in Sources */,
+				7C1210F428553CBE00BD55FB /* BreedCell.swift in Sources */,
+				7C1210F02855109200BD55FB /* Get_Breeds.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
