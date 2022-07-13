@@ -8,7 +8,8 @@
 import Foundation
 
 class Get_Breeds {
-    private var endpoint = URL(string: "https://dog.ceo/api/breeds/list/all")
+    private var endpointListBreed = URL(string: "https://dog.ceo/api/breeds/list/all")
+    private var endpointDogImage = URL(string: "https://dog.ceo/api/breed/***/images/random")
     
     private var session: URLSession = {
         var config = URLSessionConfiguration.default
@@ -16,7 +17,7 @@ class Get_Breeds {
     }()
     
     func fetchData(callback: @escaping ([[String: String]]) -> Void) {
-        let request = URLRequest(url: endpoint!)
+        let request = URLRequest(url: endpointListBreed!)
         let task = session.dataTask(with: request) {
             data, response, error in
             if let data = data {
@@ -51,6 +52,35 @@ class Get_Breeds {
                 }
             } else if let error = error {
                 print(error)
+            } else {
+                print("Unknown Error")
+            }
+        }
+        task.resume()
+    }
+    
+    func fetchImage(breed: String, callback: @escaping (String) -> Void) {
+        var imageEndpoint = "https://dog.ceo/api/breed/"
+        imageEndpoint += breed
+        imageEndpoint += "/images/random"
+        let request = URLRequest(url: URL(string: imageEndpoint)!)
+        let task = session.dataTask(with: request) {
+            data, response, error in
+            if let data = data {
+                do {
+                    
+                    let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+                    guard
+                        let jsonDictionay = jsonObject as? [AnyHashable:Any],
+                        let getBreeds = jsonDictionay["message"] as? String
+                    else { return }
+                    callback(getBreeds)
+                } catch let error {
+                    print("Error \(error)")
+                }
+            } else if let error = error {
+                print(error)
+                    
             } else {
                 print("Unknown Error")
             }

@@ -11,6 +11,7 @@ class BreedCell: UITableViewCell {
 
     @IBOutlet weak var subBreed: UILabel!
     @IBOutlet weak var breed: UILabel!
+    @IBOutlet weak var BreedImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
