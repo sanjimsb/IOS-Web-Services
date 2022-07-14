@@ -11,6 +11,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     var breeds : [[String: String]] = [[:]]
     var getImageDetails = ""
+    var selectedBreed: String?
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -34,12 +35,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let getApiHelper = Get_Breeds()
         getApiHelper.fetchImage(breed: breed) { getImage in
             DispatchQueue.main.async {
-//                print(getImage)
-//                print("getImage")
                 self.getImageDetails =  getImage
             }
         }
-        print(getImageDetails)
         return getImageDetails
     }
     
@@ -51,18 +49,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return 60
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectedBreed = breeds[indexPath.row]["breed"]
+        performSegue(withIdentifier: "showDetail", sender: self)
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BreedCell", for: indexPath) as! BreedCell
         cell.breed?.text = breeds[indexPath.row]["breed"]
-        let url = URL(string: getDogImage(breed: breeds[indexPath.row]["breed"] ?? ""))
-        DispatchQueue.main.async {
-            if let imageData = try? Data(contentsOf: (url ?? URL(string: "https://images.dog.ceo/breeds/affenpinscher/n02110627_7694.jpg"))!) {
-                if let loadedImage = UIImage(data: imageData) {
-                    cell.BreedImage.image = loadedImage
+        let getApiHelper = Get_Breeds()
+        if (breeds[indexPath.row]["breed"] != nil) {
+            getApiHelper.fetchImage(breed: breeds[indexPath.row]["breed"]!) { getImage in
+                DispatchQueue.main.async {
+                    let url = URL(string: getImage)
+                    if ((url) != nil) {
+                        if let imageData = try? Data(contentsOf: url!) {
+                            if let loadedImage = UIImage(data: imageData) {
+                                cell.BreedImage.image = loadedImage
+                            }
+                        }
+                    }
                 }
             }
-            
         }
+       
         
         let getSubBreed = breeds[indexPath.row]["name"]
         if !(getSubBreed?.isEmpty ?? false) {
@@ -72,6 +84,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let DogOption = segue.destination as! DogDetailController
+        DogOption.getBreed = self.selectedBreed!
     }
     
 }
